@@ -1,10 +1,11 @@
 import express from 'express';
-import { loginUser, registerUser } from '../controllers/UserController.js';
-
+import { getDashboardData, getUserDetails, ListUsers } from '../controllers/UserController';
+import { protect , authorize } from "../middlewares/authMiddleware.js"
 
 const UserRouter = express.Router();
 
-UserRouter.post('/register', registerUser);
-UserRouter.post('/login', loginUser);
+UserRouter.get('/dashboard',protect, authorize('admin'), getDashboardData);
+UserRouter.get('/list',protect, authorize('admin'), ListUsers);
+UserRouter.get('/:id',protect, authorize('admin'), getUserDetails);
 
 export default UserRouter;
