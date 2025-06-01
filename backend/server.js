@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import AuthRouter from "./routes/AuthRouter.js";
 import UserRouter from "./routes/UserRouter.js";
+import StoreRouter from "./routes/StoreRouter.js";
 
 
 dotenv.config();
@@ -21,6 +22,7 @@ connectDB();
 // Import routes
 app.use('/api/auth', AuthRouter);
 app.use('/api/admin', UserRouter);
+app.use('/api/store', StoreRouter);
 // Routes
 app.get("/", (req, res) => {
     res.send("API is running...");
