@@ -29,7 +29,7 @@ export const ListUsers = async (req, res) => {
         if (address) filter.address = { $regex: address, $options: 'i' }; // Case-insensitive search
         if (role) filter.role = role; // Exact match for role
 
-        const users = await UserModel.find(filter).select('-password');
+        const users = await UserModel.find(filter).select('-password').sort(sort);
         res.json(users);
     }
     catch (error) {
