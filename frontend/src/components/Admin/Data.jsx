@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../utils/axios';
 
 const Data = () => {
-  const [userdata, setUserdata] = useState(null); // set to null initially
+  const [userdata, setUserdata] = useState(null); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api/admin/dashboard');
-        setUserdata(response.data); // assuming response.data = { totalUsers, totalStores, totalRatings }
+        setUserdata(response.data);
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
       }
     };
 
     fetchData();
-  }, []); // ✅ dependency array to run once on mount
+  }, []); 
 
   if (!userdata) {
     return <p className='text-center mt-4'>Loading dashboard data...</p>;
@@ -23,15 +23,15 @@ const Data = () => {
 
   return (
     <div className='w-full bg-white p-6 rounded-xl shadow-sm'>
-  {/* Header Section */}
+ 
   <div className='mb-8 text-center'>
     <h1 className='text-3xl font-bold text-blue-800'>Admin Data Management</h1>
     <p className='text-blue-600 mt-2'>Overview of platform statistics</p>
   </div>
 
-  {/* Stats Cards */}
+  
   <div className='grid grid-cols-1 sm:grid-cols-3 gap-6'>
-    {/* Total Users Card */}
+    
     <div className='bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
       <div className='flex items-center justify-center mb-4'>
         <div className='p-3 bg-blue-100 rounded-full'>
@@ -44,7 +44,6 @@ const Data = () => {
       <p className='text-3xl font-bold text-blue-900 text-center'>{userdata.totalUsers}</p>
     </div>
 
-    {/* Total Stores Card */}
     <div className='bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
       <div className='flex items-center justify-center mb-4'>
         <div className='p-3 bg-blue-100 rounded-full'>
@@ -57,7 +56,7 @@ const Data = () => {
       <p className='text-3xl font-bold text-blue-900 text-center'>{userdata.totalStores}</p>
     </div>
 
-    {/* Total Ratings Card */}
+    
     <div className='bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200 shadow-sm hover:shadow-md transition-shadow duration-300'>
       <div className='flex items-center justify-center mb-4'>
         <div className='p-3 bg-blue-100 rounded-full'>

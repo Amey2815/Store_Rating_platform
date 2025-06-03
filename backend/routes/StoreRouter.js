@@ -7,10 +7,10 @@ import { addRating, addStore, getStoreDetails, getStoreOwner } from '../controll
 
 const StoreRouter = express.Router();
 
-StoreRouter.post('/add', protect, authorize('admin'), addStore);
+StoreRouter.post('/add', protect, authorize('admin','owner'), addStore);
 
 StoreRouter.get('/details', protect, authorize('user'), getStoreDetails);
-StoreRouter.post('/:storeId/rate', protect, authorize('user'), addRating);
+StoreRouter.post('/:storeId', protect, authorize('user'), addRating);
 
 StoreRouter.get('/owner/mystore', protect, authorize('owner'), getStoreOwner);
 
